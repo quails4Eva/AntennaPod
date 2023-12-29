@@ -63,6 +63,7 @@ public class PlaybackControlsDialog extends DialogFragment {
     }
 
     private void setupUi() {
+        // Todo - this is the current ui - either update or remove
         final CheckBox skipSilence = dialog.findViewById(R.id.skipSilence);
         skipSilence.setChecked(UserPreferences.isSkipSilence());
         skipSilence.setOnCheckedChangeListener((buttonView, isChecked) -> {

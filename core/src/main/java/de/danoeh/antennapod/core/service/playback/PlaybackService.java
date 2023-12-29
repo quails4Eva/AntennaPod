@@ -1579,6 +1579,8 @@ public class PlaybackService extends MediaBrowserServiceCompat {
         }
     }
 
+    // Todo - set for skip silence
+
     public static MediaType getCurrentMediaType() {
         return currentMediaType;
     }
@@ -1621,10 +1623,11 @@ public class PlaybackService extends MediaBrowserServiceCompat {
             UserPreferences.setPlaybackSpeed(speed);
         }
 
-        mediaPlayer.setPlaybackParams(speed, UserPreferences.isSkipSilence());
+        mediaPlayer.setPlaybackParams(speed, getCurrentSkipSilence());
     }
 
     public void skipSilence(boolean skipSilence) {
+        // Todo - handle
         mediaPlayer.setPlaybackParams(getCurrentPlaybackSpeed(), skipSilence);
     }
 
@@ -1633,6 +1636,13 @@ public class PlaybackService extends MediaBrowserServiceCompat {
             return 1.0f;
         }
         return mediaPlayer.getPlaybackSpeed();
+    }
+
+    private boolean getCurrentSkipSilence() {
+        if(mediaPlayer == null) {
+            return false;
+        }
+        return mediaPlayer.getSkipSilence();
     }
 
     public boolean isStartWhenPrepared() {
